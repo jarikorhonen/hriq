@@ -16,4 +16,30 @@ The feature extractor is used to extract a feature vector from each input patch;
 
 Finally, RNN is used for spatial pooling and regression. The proposed RNN model has similar design as in RNN-BIQAv2, with some differences. The features extracted from the low and high resolution patches form two sequences of feature vectors that are used as input to the two branches of the RNN model. Both branches include a fully connected layer with shared weights for prescaling, three GRU layers with individual weight for sequential processing, and finally a GRU head for regression after weighted averaging and concatenation of the feature sequences from the two branches.
 
-### Technical description
+### Usage
+The usage of the model is similar to RNN-BIQAv2, except that in this case we use HRIQ dataset instead of third-party datasets. For fine-tuning the CNN model, you need to have LIVE Challenge image quality database installed from: http://live.ece.utexas.edu/research/ChallengeDB/.
+
+For training and testing the model from scratch, you can use `masterScript.m`. It can be run from 
+Matlab command line as:
+
+```
+>> masterScript_hriq(livec_path, koniq_path, spaq_path, cpugpu);
+```
+
+The following input is required:
+
+`livec_path`: path to the LIVE Challenge dataset, including metadata files _allmos_release.mat_ and 
+_allstddev_release.mat_. For example: _'c:\\livechallenge'_.
+
+`hriq_path`: path to the HRIQ dataset, including metadata files _hriq_mos_file.csv_. For example: _'c:\\hriq'_.
+
+`cpugpu`: whether to use CPU or GPU for training and testing the models, either _'cpu'_ or _'gpu'_.
+
+The script implements the following functionality:
+
+1) Makes patches out of LIVE Challenge dataset and makes probabilistic quality scores (file 
+_LiveC_prob.mat_), `using processLiveChallenge.m` script.
+3) Trains CNN feature extractor, using `trainCNNmodel.m` script.
+4) Extracts feature vector sequences from HRIQ images, using the trained
+feature extractor, off-the-shelf ViT model and `computeHRIQModelFeatures.m` script. *Note that for using the ViT model, you need to use Matlab version R2023b or later!* 
+5) Trains and tests RNN model by using HRIQ with ten different splits to training and testing data. Uses `trainAndTestHRIQmodel.m` script for this purpose. Displays the results for SCC, PCC, and RMSE after each iteration, and finally the average results.
