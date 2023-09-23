@@ -83,7 +83,7 @@ result = [];
 
 for i=1:10
     seqlen = length(X); 
-    fprintf('Making training and test sequences\n');
+    fprintf('Training and testing the model...\n');
     rng(vals(i));      
     rand_seq = randperm(seqlen);
 
