@@ -39,7 +39,7 @@ The script implements the following functionality:
 
 1) Makes patches out of LIVE Challenge dataset and makes probabilistic quality scores (file 
 _LiveC_prob.mat_), `using processLiveChallenge.m` script.
-3) Trains CNN feature extractor, using `trainCNNmodel.m` script.
+3) Trains CNN feature extractor, using `trainCNNmodelV3.m` script.
 4) Extracts feature vector sequences from HRIQ images, using the trained
 feature extractor, off-the-shelf ViT model and `computeHRIQModelFeatures.m` script. *Note that for using the ViT model, you need to use Matlab version R2023b or later!* 
 5) Trains and tests RNN model by using HRIQ with ten different splits to training and testing data. Uses `trainAndTestHRIQmodel.m` script for this purpose. Displays the results for SCC, PCC, and RMSE after each iteration, and finally the average results.
