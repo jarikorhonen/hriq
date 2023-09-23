@@ -1,0 +1,31 @@
+% Custom cross-entropy layer for regression
+
+classdef myCrossentropyRegressionLayer < nnet.layer.RegressionLayer
+               
+    methods
+        function layer = myCrossentropyRegressionLayer(name)
+			
+            layer.Name = name;
+            layer.Description = "Custom cross-entropy regression layer";
+        end
+    
+        function loss = forwardLoss(layer, Y, T)
+
+            N = size(Y,4);
+            Y = squeeze(Y);
+            T = squeeze(T);
+            prod = (T.*log(Y));
+            loss = -sum(prod(:))/N;
+        end
+        
+        function dLdY = backwardLoss(layer, Y, T)
+            
+            [h,w,K,N] = size(Y);
+            Y = squeeze(Y);
+            T = squeeze(T);
+            dLdY = -(T./Y)/N;
+            dLdY = reshape(dLdY,[h w K N]);
+        end
+        
+    end
+end
