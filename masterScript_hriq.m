@@ -97,12 +97,12 @@ for i=1:10
     new_result = trainAndTestHRIQmodel(XTrain, YTrain, XTest, YTest);
 
     fprintf('Result for test split %d:\n', i);
-    fprintf('SCC: %1.3f PCC: %1.3f RMSE: %2.1f\n', new_result(1), new_result(2), new_result(3));
-    result = [result; new_result];
+    fprintf('SCC: %1.3f PCC: %1.3f RMSE: %1.3f\n', new_result(1), new_result(2), new_result(3)*4);
+    result = [result; new_result]
 end
-mean_result = mean(result);
+mean_result = mean(result)
 fprintf('Average results with 10 splits on HRIQ dataset:\n');
-fprintf('SCC: %1.3f PCC: %1.3f RMSE: %2.1f\n', mean_result(1), mean_result(2), mean_result(3));
+fprintf('SCC: %1.3f PCC: %1.3f RMSE: %1.3f\n', mean_result(1), mean_result(2), mean_result(3)*4);
  
 out = 0;
 % end
