@@ -53,6 +53,7 @@ lgraph = replaceLayer(lgraph,'imageinput', imageInputLayer([224 224 3], ...
     'Normalization', 'zscore', 'Name', 'imageinput', ...
     'Mean', orig_mean, 'StandardDeviation', orig_std));
 lgraph = replaceLayer(lgraph,'softmax',regressionLayer('Name','regr'));
+lgraph = replaceLayer(lgraph,'re-flatten',functionLayer(@(X) reflattenHack(X),'Name','re-flatten')); 
 vit = assembleNetwork(lgraph);
 
 % Read HRIQ metadata and compute features image by image
