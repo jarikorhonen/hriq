@@ -5,7 +5,7 @@ The resolutions of the images used for currently available large scale natural i
 
 The database and the related metadata with Mean Opinion Scores (MOS) are available for download [here](https://drive.google.com/drive/folders/1TUaAD0pQMZjJInDpWd_apYXh3kDF6ydA). We have included three different resolution versions of each image in the dataset: 2880x2160, 1024x768, and 512x384; however, note that only the largest resolution was used in subjective testing. We will add a link to the paper with more details about the database here later.
 
-If you use this database in your research, please include citation: ***H. Huang, Q. Wan, J. Korhonen: "High Resolution Image Quality Database," ICASSP'24, Seoul, South Korea, April 2024 (accepted for publication), preprint available [here](https://arxiv.org/abs/2401.16087)*** 
+If you use this database in your research, please include citation: ***H. Huang, Q. Wan, J. Korhonen: "High Resolution Image Quality Database," ICASSP'24, Seoul, South Korea, April 2024 (accepted for publication), preprint available [here](https://arxiv.org/abs/2401.16087)***. 
 
 ## The model
 
